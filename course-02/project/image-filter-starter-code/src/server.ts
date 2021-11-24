@@ -29,6 +29,21 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
+  app.get("/filteredimage/", async (req, res) => {
+  let {image_url} = req.query;
+
+  if( !image_url ) {
+    return res.status(422)
+      .send(`Error 422: No Image URL Provided.`);
+  }else{
+      filterImageFromURL(image_url).then((result)=>{
+      res.status(200).sendFile(result);
+      res.on('finish',()=>deleteLocalFiles([result]));
+      }).catch((err)=>res.status(422).send(err))
+  }
+  } );
+
+
   //! END @TODO1
   
   // Root Endpoint

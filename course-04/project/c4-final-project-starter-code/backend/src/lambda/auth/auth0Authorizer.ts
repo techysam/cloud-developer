@@ -8,7 +8,7 @@ import { JwtPayload } from '../../auth/JwtPayload'
 
 const logger = createLogger('auth')
 
-const jwksUrl = process.env.AUTH_0_JWKS_URL
+const jwksUrl = 'https://dev-nzq7t-ek.us.auth0.com/.well-known/jwks.json'
 
 let cachedCertificate: string
 
